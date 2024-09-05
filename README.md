@@ -15,6 +15,11 @@ add config services.php:
         'base_url' => env('XECD_URL', 'https://xecdapi.xe.com'),
     ],
 ```
+config:
+
+```php
+php artisan vendor:publish --provider="Icekristal\XecdapiForLaravel\XecdapiServiceProvider" --tag="config"
+```
 
 use:
 ```php

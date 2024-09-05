@@ -1,8 +1,8 @@
 <?php
+namespace Icekristal\XecdapiForLaravel;
 
 use Icekristal\XecdapiForLaravel\Services\XecdapiService;
 use Illuminate\Support\ServiceProvider;
-use Icekristal\XecdapiForLaravel;
 
 class XecdapiServiceProvider extends ServiceProvider
 {
