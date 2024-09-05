@@ -5,6 +5,9 @@ namespace Icekristal\XecdapiForLaravel\Services;
 use Exception;
 use GuzzleHttp\Promise\PromiseInterface;
 use Icekristal\XecdapiForLaravel\Services\DTO\AccountInfoResponseDTO;
+use Icekristal\XecdapiForLaravel\Services\DTO\ConvertFromResponseDTO;
+use Icekristal\XecdapiForLaravel\Services\DTO\ConvertFromToRequestDTO;
+use Icekristal\XecdapiForLaravel\Services\DTO\ConvertToResponseDTO;
 use Icekristal\XecdapiForLaravel\Services\DTO\CurrenciesRequestDTO;
 use Icekristal\XecdapiForLaravel\Services\DTO\CurrenciesResponseDTO;
 use Icekristal\XecdapiForLaravel\Services\DTO\ErrorDTO;
@@ -71,6 +74,34 @@ class XecdapiService
         $response = $this->sendRequest();
         $this->writeLog('getCurrencies', ['response' => $response->json(), 'status' => $response->status(), 'request' => $requestDTO->toArray()]);
         return new CurrenciesResponseDTO($response->json());
+    }
+
+    /**
+     * @return ConvertFromResponseDTO
+     * @throws Exception
+     */
+    public function convertFrom(): ConvertFromResponseDTO
+    {
+        $this->additionalPath = '/convert_from';
+        $requestDTO = new ConvertFromToRequestDTO($this->getQueryParams());
+        $this->setQueryParams($requestDTO->toArray());
+        $response = $this->sendRequest();
+        $this->writeLog('convertFrom', ['response' => $response->json(), 'status' => $response->status(), 'request' => $requestDTO->toArray()]);
+        return new ConvertFromResponseDTO($response->json());
+    }
+
+    /**
+     * @return ConvertToResponseDTO
+     * @throws Exception
+     */
+    public function convertTo(): ConvertToResponseDTO
+    {
+        $this->additionalPath = '/convert_to';
+        $requestDTO = new ConvertFromToRequestDTO($this->getQueryParams());
+        $this->setQueryParams($requestDTO->toArray());
+        $response = $this->sendRequest();
+        $this->writeLog('convertTo', ['response' => $response->json(), 'status' => $response->status(), 'request' => $requestDTO->toArray()]);
+        return new ConvertToResponseDTO($response->json());
     }
 
     /**
