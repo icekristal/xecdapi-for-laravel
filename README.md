@@ -38,4 +38,6 @@ Xecdapi::setQueryParams($needParams)->convertFrom();
 Xecdapi::setQueryParams($needParams)->convertTo();
 Xecdapi::setQueryParams($needParams)->centralBankExchangeRate();
 
+//custom convert one to one
+Xecdapi::fastConvertFiat(string $from, string $to, float|int $amount = 1); //return float; if -1 then error
 ```

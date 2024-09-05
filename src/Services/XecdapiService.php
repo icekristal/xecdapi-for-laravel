@@ -43,7 +43,7 @@ class XecdapiService
 
         $this->authUserName = config('services.xecdapi.auth.username', null);
         $this->authPassword = config('services.xecdapi.auth.password', null);
-        $this->baseUrl = config('services.xecdapi.base_url', $this->baseUrl) . '/' .config('xecdapi.api_version', 'v1');
+        $this->baseUrl = config('services.xecdapi.base_url', $this->baseUrl) . '/' . config('xecdapi.api_version', 'v1');
 
         if (is_null($this->authUserName) || is_null($this->authPassword)) {
             throw new Exception('Xecdapi auth username or password is not set');
@@ -117,6 +117,24 @@ class XecdapiService
         $response = $this->sendRequest();
         $this->writeLog('centralBankExchangeRate', ['response' => $response->json(), 'status' => $response->status(), 'request' => $requestDTO->toArray()]);
         return new CentralBankExchangeRateResponseDTO($response->json());
+    }
+
+    /**
+     * @param string $from
+     * @param string $to
+     * @param float|int $amount
+     * @return float|int
+     * @throws Exception
+     */
+    public function fastConvertFiat(string $from, string $to, float|int $amount = 1): float|int
+    {
+        $this->setQueryParams(['from' => $from, 'to' => $to, 'amount' => $amount]);
+        $response = $this->convertFrom()->toArray();
+        $this->writeLog('fastConvertFiat', ['response' => $response]);
+        if (!isset($response['to']) || !isset($response['to'][0])) {
+            return -1;
+        }
+        return $response['to'][0]->toArray()['mid'];
     }
 
     /**

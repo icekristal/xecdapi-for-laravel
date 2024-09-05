@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static ConvertFromResponseDTO convertFrom()
  * @method static ConvertToResponseDTO convertTo()
  * @method static CentralBankExchangeRateResponseDTO centralBankExchangeRate()
+ * @method static float|int fastConvertFiat(string $from, string $to, float|int $amount = 1)
  *
  */
 class Xecdapi extends Facade
