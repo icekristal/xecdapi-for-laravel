@@ -43,7 +43,7 @@ class XecdapiService
 
         $this->authUserName = config('services.xecdapi.auth.username', null);
         $this->authPassword = config('services.xecdapi.auth.password', null);
-        $this->baseUrl = config('services.xecdapi.base_url', $this->baseUrl) . config('xecdapi.api_version', '/v1');
+        $this->baseUrl = config('services.xecdapi.base_url', $this->baseUrl) . '/' .config('xecdapi.api_version', 'v1');
 
         if (is_null($this->authUserName) || is_null($this->authPassword)) {
             throw new Exception('Xecdapi auth username or password is not set');
