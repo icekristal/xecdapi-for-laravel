@@ -17,26 +17,26 @@ class CurrenciesRequestDTO extends DTOBase
      * OPTIONAL – If 'true' then endpoint will display currencies that are obsolete but for which historical data is available
      * @var bool
      */
-    public bool $obsolete = false;
+    protected bool $obsolete = false;
 
     /**
      * Languages available: ar, de, en, es, fr, it, ja, pt, sv, zh-CN, zh-HK.
      * @var string
      */
-    public string $language = 'en';
+    protected string $language = 'en';
 
     /**
      * OPTIONAL - If 'symbol' then returns 'currency_symbol' and 'currency_symbol_on_right' in response
      * @var string
      */
-    public string $additionalInfo;
+    protected string $additionalInfo;
 
     /**
      * OPTIONAL – If 'true' then this endpoint will return data for the following crypto currencies:
      * ADA, BCH, DOGE, DOT, ETH, LINK, LTC, LUNA, UNI, XLM and XRP
      * @var bool
      */
-    public bool $crypto = false;
+    protected bool $crypto = false;
 
     /**
      * @param string $iso

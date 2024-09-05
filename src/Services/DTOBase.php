@@ -17,6 +17,10 @@ class DTOBase implements Arrayable, Jsonable, Stringable
             if (!property_exists($this, $key)) {
                 continue;
             }
+            if(method_exists($this, 'set'.ucfirst($key))){
+                $this->{'set'.ucfirst($key)}($value);
+                continue;
+            }
             $this->{$key} = $value;
         }
     }

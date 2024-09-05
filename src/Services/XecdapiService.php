@@ -5,6 +5,8 @@ namespace Icekristal\XecdapiForLaravel\Services;
 use Exception;
 use GuzzleHttp\Promise\PromiseInterface;
 use Icekristal\XecdapiForLaravel\Services\DTO\AccountInfoResponseDTO;
+use Icekristal\XecdapiForLaravel\Services\DTO\CentralBankExchangeRateRequestDTO;
+use Icekristal\XecdapiForLaravel\Services\DTO\CentralBankExchangeRateResponseDTO;
 use Icekristal\XecdapiForLaravel\Services\DTO\ConvertFromResponseDTO;
 use Icekristal\XecdapiForLaravel\Services\DTO\ConvertFromToRequestDTO;
 use Icekristal\XecdapiForLaravel\Services\DTO\ConvertToResponseDTO;
@@ -102,6 +104,19 @@ class XecdapiService
         $response = $this->sendRequest();
         $this->writeLog('convertTo', ['response' => $response->json(), 'status' => $response->status(), 'request' => $requestDTO->toArray()]);
         return new ConvertToResponseDTO($response->json());
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function centralBankExchangeRate(): CentralBankExchangeRateResponseDTO
+    {
+        $this->additionalPath = '/central_bank_rate';
+        $requestDTO = new CentralBankExchangeRateRequestDTO($this->getQueryParams());
+        $this->setQueryParams($requestDTO->toArray());
+        $response = $this->sendRequest();
+        $this->writeLog('centralBankExchangeRate', ['response' => $response->json(), 'status' => $response->status(), 'request' => $requestDTO->toArray()]);
+        return new CentralBankExchangeRateResponseDTO($response->json());
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace Icekristal\XecdapiForLaravel\Facades;
 
 use Icekristal\XecdapiForLaravel\Services\DTO\AccountInfoResponseDTO;
+use Icekristal\XecdapiForLaravel\Services\DTO\CentralBankExchangeRateResponseDTO;
 use Icekristal\XecdapiForLaravel\Services\DTO\ConvertFromResponseDTO;
 use Icekristal\XecdapiForLaravel\Services\DTO\ConvertToResponseDTO;
 use Icekristal\XecdapiForLaravel\Services\DTO\CurrenciesResponseDTO;
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static XecdapiService setQueryParams(array $queryParams)
  * @method static ConvertFromResponseDTO convertFrom()
  * @method static ConvertToResponseDTO convertTo()
+ * @method static CentralBankExchangeRateResponseDTO centralBankExchangeRate()
  *
  */
 class Xecdapi extends Facade
