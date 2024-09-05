@@ -15,7 +15,7 @@ class CentralBankExchangeRateResponseDTO extends DTOBase
     protected string $from;
     protected string $timestamp;
     protected int|float $amount;
-    protected ?Collection $to;
+    protected Collection|array|null $to;
 
     public function __construct(array $data = [])
     {

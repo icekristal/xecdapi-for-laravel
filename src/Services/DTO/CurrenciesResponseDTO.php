@@ -9,7 +9,7 @@ class CurrenciesResponseDTO extends DTOBase
 {
     public string $terms;
     public string $privacy;
-    public ?Collection $currencies;
+    public Collection|array|null $currencies;
 
     public function __construct(array $data = [])
     {

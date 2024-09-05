@@ -12,7 +12,7 @@ class ConvertToResponseDTO extends DTOBase
     protected string $to;
     protected float|int $amount;
     protected string $timestamp;
-    protected ?Collection $from;
+    protected Collection|array|null $from;
 
     public function __construct(array $data = [])
     {
